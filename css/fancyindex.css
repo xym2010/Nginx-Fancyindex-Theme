@@ -121,7 +121,7 @@ html, body {
 }
 
 tbody tr:first-child {
-  display: none;
+  /*display: none;*/
 }
 
 tr.e {

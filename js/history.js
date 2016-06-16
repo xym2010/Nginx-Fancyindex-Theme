@@ -27,19 +27,21 @@ if (!!(window.history && history.pushState)) {
   })();
 
   var updateCrumbs = function() {
-    window.document.title = window.location.pathname;
+    window.document.title = decodeURI(window.location.pathname);
     setTimeout(function () {
       var loc = window.location.pathname;
+      console.log(decodeURI(loc))
       var segments = loc.split('/');
       var breadcrumbs = '';
       var currentPath = '/';
       for (var i = 0; i < segments.length; i++) {
         if (segments[i] !== '') {
           currentPath += segments[i] + '/';
-          breadcrumbs += '<a href="' +  currentPath + '">' + window.unescape(segments[i]) + '<\/a>';
+          //breadcrumbs += '<a href="' +  currentPath + '">' + window.unescape(segments[i]) + '<\/a>';
+          breadcrumbs += '<a href="' +  currentPath + '">' + decodeURI(segments[i]) + '<\/a>';
         } else if (segments.length -1 !== i) {
           currentPath += '';
-          breadcrumbs += '<a href="' + currentPath + '">Root<\/a>';
+          breadcrumbs += '<a href="' + currentPath + '">天天向上下载中心<\/a>';
         }
       }
       document.getElementById('breadcrumbs').innerHTML = breadcrumbs;
